@@ -13,7 +13,7 @@ const isExist = async (filePath) => {
   }
 };
 
-const getValueByKey = async (key) => {
+export const getValueByKey = async (key) => {
   if (await isExist(localFilePath)) {
     const file = await promises.readFile(localFilePath);
     const data = JSON.parse(file);
