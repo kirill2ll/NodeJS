@@ -6,6 +6,10 @@ import { printHelp, printError, printSuccess } from "./services/log.service.js";
 import { saveKeyValue } from "./services/storage.service.js";
 
 const saveToken = async (token) => {
+  if (!token.length) {
+    printError("The token was not provided");
+    return;
+  }
   try {
     await saveKeyValue("token", token);
     printSuccess("Token is saved");
