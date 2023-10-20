@@ -1,11 +1,18 @@
 import axios from "axios";
 import { getValueByKey } from "./storage.service.js";
 
-export const getWeather = async (city) => {
+export const getWeather = async () => {
   const token = await getValueByKey("token");
+  const city = await getValueByKey("city");
   if (!token) {
     throw new Error(
       "Token is missing. Add your token using -t [TOKEN-KEY] command"
+    );
+  }
+
+  if (!city) {
+    throw new Error(
+      "City is missing. Add your token using -s [CITY-NAME] command"
     );
   }
 
@@ -20,6 +27,5 @@ export const getWeather = async (city) => {
       },
     }
   );
-  console.log(data);
   return data;
 };
