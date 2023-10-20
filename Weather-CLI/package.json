@@ -1,5 +1,5 @@
 {
-  "name": "weather-cli",
+  "name": "check-weather-cli",
   "version": "1.0.0",
   "description": "Get weather using CLI",
   "main": "weather.js",
@@ -17,6 +17,10 @@
   ],
   "author": "Kirill Kvitkovski",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kirill2ll/NodeJS/tree/main/Weather-CLI"
+  },
   "dependencies": {
     "axios": "^1.5.1",
     "chalk": "^5.3.0"
