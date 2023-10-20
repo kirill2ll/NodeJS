@@ -2,8 +2,13 @@
 //used for CLI command weather
 
 import { getArgs } from "./helpers/args.js";
-import { getWeather } from "./services/api.service.js";
-import { printHelp, printError, printSuccess } from "./services/log.service.js";
+import { getIcon, getWeather } from "./services/api.service.js";
+import {
+  printHelp,
+  printError,
+  printSuccess,
+  printWeather,
+} from "./services/log.service.js";
 import { saveKeyValue } from "./services/storage.service.js";
 
 const saveToken = async (token) => {
@@ -35,7 +40,7 @@ const saveCity = async (city) => {
 const getForecast = async () => {
   try {
     const weather = await getWeather();
-    console.log(weather);
+    printWeather(weather, getIcon(weather.weather[0].icon));
   } catch (e) {
     if (e.response?.status == 404) {
       printError("The city is wrong");
@@ -53,18 +58,18 @@ const initCLI = () => {
 
   //display help
   if (args.h) {
-    printHelp();
+    return printHelp();
   }
   //save city
   if (args.s) {
-    saveCity(args.s);
+    return saveCity(args.s);
   }
   //save token
   if (args.t) {
-    saveToken(args.t);
+    return saveToken(args.t);
   }
   //display weather
-  getForecast();
+  return getForecast();
 };
 
 initCLI();
