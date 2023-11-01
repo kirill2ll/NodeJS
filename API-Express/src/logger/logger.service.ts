@@ -1,4 +1,5 @@
 import { Logger, ISettingsParam } from "tslog";
+import { ILogger } from "./logger.interface";
 
 const loggerSettings: ISettingsParam<unknown> = {
   displayInstanceName: false,
@@ -7,7 +8,7 @@ const loggerSettings: ISettingsParam<unknown> = {
   displayFunctionName: false,
 } as any;
 
-export class LoggerService {
+export class LoggerService implements ILogger {
   logger: Logger<unknown>;
 
   constructor() {
