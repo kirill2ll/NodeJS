@@ -1,5 +1,7 @@
 import { Logger, ISettingsParam } from "tslog";
 import { ILogger } from "./logger.interface";
+import { injectable } from "inversify";
+import "reflect-metadata";
 
 const loggerSettings: ISettingsParam<unknown> = {
   displayInstanceName: false,
@@ -8,6 +10,7 @@ const loggerSettings: ISettingsParam<unknown> = {
   displayFunctionName: false,
 } as any;
 
+@injectable()
 export class LoggerService implements ILogger {
   logger: Logger<unknown>;
 
