@@ -1,5 +1,12 @@
+import { IsEmail, IsString } from 'class-validator';
+
 export class UserRegisterDto {
-	email: string;
-	password: string;
-	name: string;
+	@IsEmail({}, { message: 'Email is not valid' })
+	email!: string;
+
+	@IsString({ message: 'Password is not valid' })
+	password!: string;
+
+	@IsString({ message: 'Name is not valid' })
+	name!: string;
 }
