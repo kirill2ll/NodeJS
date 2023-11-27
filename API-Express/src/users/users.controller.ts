@@ -36,9 +36,17 @@ export class UserController extends BaseController implements IUserController {
 		]);
 	}
 
-	login(req: Request<{}, {}, UserLoginDto>, res: Response, next: NextFunction): void {
-		console.log(req.body);
-		next(new HTTPError(401, 'Not implemented yet', 'login'));
+	async login(
+		req: Request<{}, {}, UserLoginDto>,
+		res: Response,
+		next: NextFunction,
+	): Promise<void> {
+		const result = await this.userService.validateUser(req.body);
+		if (result) {
+			this.ok(res, {});
+		} else {
+			return next(new HTTPError(401, 'Login error', 'login'));
+		}
 		// this.ok(res, "login");
 	}
 
